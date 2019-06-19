@@ -39,8 +39,8 @@ def plot_confusion_matrix(cm, classes,
                  horizontalalignment="center",
                  color="white" if cm[i, j] > thresh else "black")
 
-    plt.ylabel('True label', fontsize=30)
-    plt.xlabel('Predicted label', fontsize=30)
+    plt.ylabel('Predicted label', fontsize=30)
+    plt.xlabel('True label', fontsize=30)
     plt.savefig('picConfMatrix.png', dpi = 400)
     plt.tight_layout()
 
