@@ -50,7 +50,7 @@ def PrepareGoogleSpeechCmd(version = 2, forceDownload = False, task = '20cmd'):
         basePath = 'sd_GSCmdV2'
     elif version == 1:
         # _DownloadGoogleSpeechCmdV1(forceDownload)
-        basePath = 'drive/My Drive/muestras_voz'
+        basePath = 'muestras_voz'
     else:
         raise Exception('Version must be 1 or 2')
         
