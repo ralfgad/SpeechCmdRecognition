@@ -82,10 +82,10 @@ def PrepareGoogleSpeechCmd(version = 2, forceDownload = False, task = '20cmd'):
                          }
         numGSCmdV2Categs = 11       
      
-    print('Converting test set WAVs to numpy files')
-    audioUtils.WAV2Numpy(basePath + '/test/')
-    print('Converting training set WAVs to numpy files')
-    audioUtils.WAV2Numpy(basePath + '/train/')
+    # print('Converting test set WAVs to numpy files')
+    # audioUtils.WAV2Numpy(basePath + '/test/')
+    # print('Converting training set WAVs to numpy files')
+    # audioUtils.WAV2Numpy(basePath + '/train/')
     
     #read split from files and all files in folders
     testWAVs = pd.read_csv(basePath+'/train/testing_list.txt', sep=" ", header=None)[0].tolist()
