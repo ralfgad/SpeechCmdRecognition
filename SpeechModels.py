@@ -109,7 +109,7 @@ def AttRNNSpeechModel(nCategories, samplingrate = 16000, inputLength = 16000):
     sr = samplingrate
     iLen = inputLength
     
-    inputs = Input((sr,))
+    inputs = Input((iLen,))
 
     x = Reshape((1, -1)) (inputs)
 

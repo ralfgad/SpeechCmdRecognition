@@ -40,7 +40,7 @@ def PrepareGoogleSpeechCmd(version = 2, forceDownload = False, task = '20cmd'):
     
     Returns full path to training, validation and test file list and file categories
     """
-    allowedTasks = ['12cmd', 'leftright', '35word', '20cmd']
+    allowedTasks = ['12cmd', 'leftright', '35word', '20cmd', '10digit']
     if task not in allowedTasks:
         raise Exception('Task must be one of: {}'.format(allowedTasks))
     
@@ -49,8 +49,8 @@ def PrepareGoogleSpeechCmd(version = 2, forceDownload = False, task = '20cmd'):
         _DownloadGoogleSpeechCmdV2(forceDownload)
         basePath = 'sd_GSCmdV2'
     elif version == 1:
-        _DownloadGoogleSpeechCmdV1(forceDownload)
-        basePath = 'sd_GSCmdV1'
+        # _DownloadGoogleSpeechCmdV1(forceDownload)
+        basePath = 'drive/My Drive/muestras_voz'
     else:
         raise Exception('Version must be 1 or 2')
         
@@ -76,7 +76,11 @@ def PrepareGoogleSpeechCmd(version = 2, forceDownload = False, task = '20cmd'):
                          'zero' : 12, 'one' : 13, 'two' : 14, 'three' : 15, 'four' : 16, 'five' : 17, 'six' : 18, 
                          'seven' : 19,  'eight' : 20, 'nine' : 1 }
         numGSCmdV2Categs = 21
-        
+    elif task=='10digit':
+        GSCmdV2Categs = { 'background' : 0, 'cero' : 1,  'uno' : 2, 'dos' : 3, 'tres' : 4, 'cuatro': 5, 'cinco' : 6, 'seis' : 7,
+                         'siete' : 8, 'ocho' : 9, 'nueve' : 10
+                         }
+        numGSCmdV2Categs = 11       
      
     print('Converting test set WAVs to numpy files')
     audioUtils.WAV2Numpy(basePath + '/test/')
@@ -105,8 +109,8 @@ def PrepareGoogleSpeechCmd(version = 2, forceDownload = False, task = '20cmd'):
     testWAVREALlabels = [_getFileCategory(f, GSCmdV2Categs) for f in testWAVsREAL]
     
     #background noise should be used for validation as well
-    backNoiseFiles = [trainWAVs[i] for i in range(len(trainWAVlabels)) if trainWAVlabels[i]==GSCmdV2Categs['silence']]
-    backNoiseCats  = [GSCmdV2Categs['silence'] for i in range(len(backNoiseFiles))]
+    backNoiseFiles = [trainWAVs[i] for i in range(len(trainWAVlabels)) if trainWAVlabels[i]==GSCmdV2Categs['background']]
+    backNoiseCats  = [GSCmdV2Categs['background'] for i in range(len(backNoiseFiles))]
     if numGSCmdV2Categs==12:
         valWAVs += backNoiseFiles
         valWAVlabels += backNoiseCats
