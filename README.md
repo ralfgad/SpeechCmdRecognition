@@ -1,11 +1,11 @@
-# Speech Command Recognition
+# Speech Digit Recognition with DNN
 
 ## A Keras implementation of neural attention model for speech command recognition
 
 This repository presents a recurrent attention model designed to identify keywords in short segments of audio. It has been tested using the Google Speech Command Datasets (v1 and v2).
-For a complete description of the architecture, please refer to [our paper](https://arxiv.org/abs/1808.08929).
+For a complete description of the architecture, please refer to [paper](https://arxiv.org/abs/1808.08929).
 
-Our main contributions are:
+Their main contributions are:
 
 - A small footprint model (201K trainable parameters) that outperforms convolutional architectures for speech command recognition (AKA keyword spotting);
 - A SpeechGenerator.py script that enables loading WAV files saved in .npy format from disk (like a Keras image generator, but for audio files);
@@ -19,7 +19,7 @@ One usual problem with deep learning models is that they are usually "black-box"
 
 # How to use this code
 
-The Demo notebook is preconfigured with a set of tasks: ```['12cmd', 'leftright', '35word', '20cmd']```. Each of these refer to how many commands should be recognized by the model. When loading the Google Speech Dataset, the user should also select which version to download and use by adjusting the following line:
+The Demo notebook is preconfigured with a set of tasks: ```['12cmd', 'leftright', '35word', '20cmd', '10digit']```. Each of these refer to how many commands should be recognized by the model. When loading the Google Speech Dataset, the user should also select which version to download and use by adjusting the following line:
 
 ```gscInfo, nCategs = SpeechDownloader.PrepareGoogleSpeechCmd(version=1, task = '35word')```
 
@@ -51,24 +51,5 @@ If you want to train with your own data:
 - Create your own Keras model for audio classification or use one provided in ```SpeechModels.py```;
 - Train the model.
 
-# Final Words
 
-We would like to thank Google for making such a great speech dataset available for public use, for making Colab available and for hosting the Kaggle competition Tensorflow Speech Recognition Challenge.
-
-If you find this code useful, please cite our work:
-
-```
-@ARTICLE{2018arXiv180808929C,
-   author = {{Coimbra de Andrade}, D. and {Leo}, S. and {Loesener Da Silva Viana}, M. and 
-	{Bernkopf}, C.},
-    title = "{A neural attention model for speech command recognition}",
-  journal = {ArXiv e-prints},
-archivePrefix = "arXiv",
-   eprint = {1808.08929},
- keywords = {Electrical Engineering and Systems Science - Audio and Speech Processing, Computer Science - Sound},
-     year = 2018,
-    month = aug,
-   adsurl = {http://adsabs.harvard.edu/abs/2018arXiv180808929C},
-  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-}
 ```
